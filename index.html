@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ace Book</title>
     <link href="./css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="./DataTables/datatables.min.css" rel="stylesheet">
 </head>
 <body class="bg-dark">
     <div id="divMain" class="vh-100">
@@ -21,7 +22,7 @@
 
 
 
-        <div class="container grid gap-3 text-white" style="display: none;">
+        <div id="divOverview" class="container grid gap-3 text-white" style="display: none;">
             <div class="row my-3">
                 <div class="col">
 
@@ -44,7 +45,7 @@
                         </div>
                         <div class="card-body">
                             <div>To place a new order click the button below.</div>
-                            <button class="btn btn-primary mt-2" type="button">New Order</button>
+                            <button id="btnNewOrder" class="btn btn-primary mt-2" type="button">New Order</button>
                         </div>
                     </div>
 
@@ -147,8 +148,11 @@
 
         <div id="divOrderForm" class="container mt-4">
             <div class="card">
-                <div class="card-header">
-                    <h2>Order Form</h2>
+                <div class="card-header d-flex align-items-center">
+                    <h2 class="col-6">Order Form</h2>
+                    <div class="col-6 d-flex justify-content-end">
+                        <button id="btnCancel" class="btn btn-outline-danger" type="button">Cancel</button>
+                    </div>
                 </div>
                 <div class="card-body">
                     <form class="">
@@ -183,8 +187,6 @@
                                 </div>
                             </div>
                         </div>
-
-
 
                         <div id="divItemInfo" class="mb-3">
                             <div class="row">
@@ -227,11 +229,9 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <button id="btnAddLine" class="btn btn-secondary" type="button">Add Line</button>
-                            <button id="btnRemoveLine" class="btn btn-danger" type="button">Remove Line</button>
+                            <button id="btnAddLine" class="btn btn-secondary me-2" type="button">Add Line</button>
+                            <button id="btnRemoveLine" class="btn btn-outline-danger" type="button">Remove Line</button>
                         </div>
-
-
 
                         <div id="divEmployeeInfo">
                             <div class="row">
@@ -248,9 +248,11 @@
                             </div>
                         </div>
 
-
-                        <button id="btnSubmitOrder" class="btn btn-primary" type="button">Submit Order</button>
-                        <button id="btnClearForm" class="btn btn-secondary" type="button">Clear Form</button>
+                        <div class="d-flex col-12 justify-content-center">
+                            <button id="btnSubmitOrder" class="btn btn-primary me-3" type="button">Submit Order</button>
+                            <button id="btnClearForm" class="btn btn-outline-secondary" type="button">Clear Form</button>
+                        </div>
+                        
                     </form>
                 </div>
             </div>
@@ -275,8 +277,35 @@
 
     <script src="./js/bootstrap/bootstrap.min.js"></script>
     <script src="./js/jquery/jquery-3.7.1.js"></script>
+    <script src="./DataTables/datatables.min.js"></script>
     <script>
         var intNumLines = 0;
+
+        function clearForm() {
+            $('#txtFirstName').val('');
+            $('#txtLastName').val('');
+            $('#intPhone').val('');
+            $('#txtEagleUser').val('');
+            $('#tblForm tbody').find('tr:gt(0)').remove();
+            intNumLines = 0;
+            $('#txtManufacturer0').val('');
+            $('#txtPartNumber0').val('');
+            $('#txtDescription0').val('');
+            $('#intPrice0').val('');
+        }
+
+        $('#btnNewOrder').on('click', function() {
+            $('#divOverview').slideUp(function() {
+                $('#divOrderForm').slideDown();
+            })
+        })
+
+        $('#btnCancel').on('click', function() {
+            $('#divOrderForm').slideUp(function() {
+                $('#divOverview').slideDown();
+            })
+            clearForm();
+        })
 
         $('#btnAddLine').on('click', function() {
             intNumLines++;
@@ -322,20 +351,7 @@
         })
 
         $('#btnClearForm').on('click', function() {
-            $('#txtFirstName').val('');
-            $('#txtLastName').val('');
-            $('#intPhone').val('');
-            $('#txtEagleUser').val('');
-            $('#tblForm tbody').find('tr:gt(0)').remove();
-            intNumLines = 0;
-            
-            $('#txtManufacturer0').val('');
-            $('#txtPartNumber0').val('');
-            $('#txtDescription0').val('');
-            $('#intPrice0').val('');
-
-            
-
+            clearForm();
         })
     </script>
 </body>
