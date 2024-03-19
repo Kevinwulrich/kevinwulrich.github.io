@@ -192,47 +192,51 @@
                             <div class="row">
                                 <h4>Order Items</h4>
                             </div>
-                            <table id="tblForm" class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Vendor</th>
-                                        <th>Manufacturer</th>
-                                        <th>Part #</th>
-                                        <th>Description</th>
-                                        <th>Quantity</th>
-                                        <th>Price</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <select id="selVendor0" class="form-control form-select">
-                                                <option hidden selected value="">Select</option>
-                                                <option value="Stihl">Stihl</option>
-                                                <option value="Rotary">Rotary</option>
-                                                <option value="RBI">RBI</option>
-                                                <option value="Kawasaki">Kawasaki</option>
-                                                <option value="PED (Exmark)">PED (Exmark)</option>
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <input id="txtManufacturer0" class="form-control" type="text" required>
-                                        </td>
-                                        <td>
-                                            <input id="txtPartNumber0" class="form-control" type="text" required> 
-                                        </td>
-                                        <td>
-                                            <input id="txtDescription0" class="form-control" type="text" required>
-                                        </td>
-                                        <td>
-                                            <input id="intQuantity0" class="form-control" type="number" required>
-                                        </td>
-                                        <td>
-                                            <input id="intPrice0" class="form-control" type="number" required>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <div class="table-responsive mb-2">
+                                <table id="tblForm" class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th style="min-width: 150px;">Vendor</th>
+                                            <th style="min-width: none;">Manufacturer</th>
+                                            <th style="min-width: 150px;">Part #</th>
+                                            <th style="min-width: 150px;">Description</th>
+                                            <th style="min-width: none;">Quantity</th>
+                                            <th style="min-width: 110px;">Price</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <select id="selVendor0" class="form-control form-select">
+                                                    <option hidden selected value="">Select</option>
+                                                    <option value="Stihl">Stihl</option>
+                                                    <option value="Rotary">Rotary</option>
+                                                    <option value="RBI">RBI</option>
+                                                    <option value="Kawasaki">Kawasaki</option>
+                                                    <option value="PED (Exmark)">PED (Exmark)</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <input id="txtManufacturer0" class="form-control" type="text" required>
+                                            </td>
+                                            <td>
+                                                <input id="txtPartNumber0" class="form-control" type="text" required> 
+                                            </td>
+                                            <td>
+                                                <input id="txtDescription0" class="form-control" type="text" required>
+                                            </td>
+                                            <td>
+                                                <input id="intQuantity0" class="form-control" type="number" required>
+                                            </td>
+                                            <td>
+                                                <input id="intPrice0" class="form-control" type="number" required>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            
                             <div class="d-flex col-12">
                                 <div class="col-6">
                                     <button id="btnAddLine" class="btn btn-secondary me-2" type="button">Add Line</button>
@@ -248,7 +252,7 @@
                             
                         </div>
 
-                        <div id="divEmployeeInfo">
+                        <div id="divEmployeeInfo" class="mb-3">
                             <div class="row">
                                 <h4>Employee Info</h4>
                             </div>
@@ -259,6 +263,12 @@
                                     <div class="invalid-feedback">
                                         Please enter an Eagle Username.
                                     </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-floating">
+                                    <textarea class="form-control" placeholder="Comments" id="txtComments" style="height: 100px;"></textarea>
+                                    <label for="floatingTextarea" class="form-label text-black ms-2">Comments</label>
                                 </div>
                             </div>
                         </div>
@@ -309,6 +319,7 @@
             $('#txtDescription0').val('');
             $('#intQuantity0').val('');
             $('#intPrice0').val('');
+            $('#txtComments').val();
             calcTotal();
         }
 
