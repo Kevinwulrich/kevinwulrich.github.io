@@ -22,7 +22,7 @@
 
 
 
-        <div id="divOverview" class="container grid gap-3 text-white" style="display: none;">
+        <div id="divOverview" class="container grid gap-3 text-white">
             <div class="row my-3">
                 <div class="col">
 
@@ -146,7 +146,7 @@
         </div>
 
 
-        <div id="divOrderForm" class="container mt-4">
+        <div id="divOrderForm" class="container mt-4" style="display: none;">
             <div class="card">
                 <div class="card-header d-flex align-items-center">
                     <h2 class="col-6">Order Form</h2>
@@ -199,6 +199,7 @@
                                         <th>Manufacturer</th>
                                         <th>Part #</th>
                                         <th>Description</th>
+                                        <th>Quantity</th>
                                         <th>Price</th>
                                     </tr>
                                 </thead>
@@ -224,13 +225,27 @@
                                             <input id="txtDescription0" class="form-control" type="text" required>
                                         </td>
                                         <td>
+                                            <input id="intQuantity0" class="form-control" type="number" required>
+                                        </td>
+                                        <td>
                                             <input id="intPrice0" class="form-control" type="number" required>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
-                            <button id="btnAddLine" class="btn btn-secondary me-2" type="button">Add Line</button>
-                            <button id="btnRemoveLine" class="btn btn-outline-danger" type="button">Remove Line</button>
+                            <div class="d-flex col-12">
+                                <div class="col-6">
+                                    <button id="btnAddLine" class="btn btn-secondary me-2" type="button">Add Line</button>
+                                    <button id="btnRemoveLine" class="btn btn-outline-danger" type="button">Remove Line</button>
+                                </div>
+                                <div class="col-6 d-flex justify-content-end">
+                                    <b class="me-3">Total:</b>
+                                    <b id="bTotal">$0.00</b>
+                                </div>
+                            </div>
+
+                            
+                            
                         </div>
 
                         <div id="divEmployeeInfo">
@@ -280,6 +295,7 @@
     <script src="./DataTables/datatables.min.js"></script>
     <script>
         var intNumLines = 0;
+        var intTotal = 0.00;
 
         function clearForm() {
             $('#txtFirstName').val('');
@@ -291,7 +307,19 @@
             $('#txtManufacturer0').val('');
             $('#txtPartNumber0').val('');
             $('#txtDescription0').val('');
+            $('#intQuantity0').val('');
             $('#intPrice0').val('');
+            calcTotal();
+        }
+
+        function calcTotal() {
+            let intNumTemp = 0
+            for(let i = 0; i <= intNumLines; i++) {
+
+                intNumTemp += (+$(`#intPrice${i}`).val() * +$(`#intQuantity${i}`).val());
+            }
+            intTotal = intNumTemp.toFixed(2);
+            $('#bTotal').text(`$${intTotal}`);
         }
 
         $('#btnNewOrder').on('click', function() {
@@ -331,6 +359,9 @@
                     <input id="txtDescription${intNumLines}" class="form-control" type="text" required>
                 </td>
                 <td>
+                    <input id="intQuantity${intNumLines}" class="form-control" type="number" required>
+                </td>
+                <td>
                     <input id="intPrice${intNumLines}" class="form-control" type="number" required>
                 </td>
             </tr>
@@ -344,6 +375,11 @@
                 intNumLines--;
                 $('#tblForm tbody tr').last().remove();
             }
+            calcTotal();
+        })
+
+        $('#tblForm').on('change', 'tbody', function() {
+            calcTotal();
         })
 
         $('#btnSubmitOrder').on('click', function() {
