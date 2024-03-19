@@ -10,16 +10,18 @@
     <div id="divMain" class="vh-100">
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#"><i><b>ACE</b></i>book</a>
+                <a class="navbar-brand" href="#"><i class="text-danger me-1"><b>ACE</b></i>book</a>
                     <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <input class="form-control me-2" type="search" placeholder="Search All Orders" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
             </div>
         </nav>
 
 
-        <div class="container grid gap-3 text-white">
+
+
+        <div class="container grid gap-3 text-white" style="display: none;">
             <div class="row my-3">
                 <div class="col">
 
@@ -28,7 +30,7 @@
                             Overview
                         </div>
                         <div class="card-body">
-                            Body
+                            <p>Body</p>
                         </div>
                     </div>
 
@@ -38,10 +40,11 @@
 
                     <div class="card">
                         <div class="card-header">
-                            Header
+                            New Order
                         </div>
                         <div class="card-body">
-                            Body
+                            <div>To place a new order click the button below.</div>
+                            <button class="btn btn-primary mt-2" type="button">New Order</button>
                         </div>
                     </div>
 
@@ -50,9 +53,14 @@
             <div class="row">
                 <div class="col">
                     
-                    <div class="card">
-                        <div class="card-header">
-                            Recent Orders
+                    <div class="card mb-3">
+                        <div class="card-header d-flex">
+                            <div class="col-6">
+                                Recent Orders
+                            </div>
+                            <div class="col-6 d-flex justify-content-end">
+                                <a type="button">View All</a>
+                            </div>
                         </div>
                         <div class="card-body">
                             
@@ -75,9 +83,14 @@
                 </div>
                 <div class="col">
                     
-                    <div class="card">
-                        <div class="card-header">
-                            Backorders
+                    <div class="card mb-3">
+                        <div class="card-header d-flex">
+                            <div class="col-6">
+                                Backorders
+                            </div>
+                            <div class="col-6 d-flex justify-content-end">
+                                <a type="button">View All</a>
+                            </div>
                         </div>
                         <div class="card-body">
                             
@@ -100,9 +113,14 @@
                 </div>
                 <div class="col">
 
-                    <div class="card">
-                        <div class="card-header">
-                            Header
+                    <div class="card mb-3">
+                        <div class="card-header d-flex">
+                            <div class="col-6">
+                                Another Table
+                            </div>
+                            <div class="col-6 d-flex justify-content-end">
+                                <a type="button">View All</a>
+                            </div>
                         </div>
                         <div class="card-body">
                             
@@ -125,11 +143,200 @@
                 </div>
             </div>
         </div>
+
+
+        <div id="divOrderForm" class="container mt-4">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Order Form</h2>
+                </div>
+                <div class="card-body">
+                    <form class="">
+
+                        <div id="divCustomerInfo">
+                            <div class="row">
+                                <h4>Customer Info</h4>
+                            </div>
+                            <div class="row">
+                                <div class="form-floating mb-3 col">
+                                    <input id="txtFirstName" type="text" class="form-control" placeholder="First Name" aria-label="First Name" required>
+                                    <label for="txtFirstName" class="form-label text-black ms-2">First Name</label>
+                                    <div class="invalid-feedback">
+                                        Please enter a First Name.
+                                    </div>
+                                </div>
+                                <div class="form-floating mb-3 col">
+                                    <input id="txtLastName" type="text" class="form-control" placeholder="Last Name" aria-label="Last Name" required>
+                                    <label for="txtLastName" class="form-label text-black ms-2">Last Name</label>
+                                    <div class="invalid-feedback">
+                                        Please enter a Last Name.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-floating mb-3">
+                                    <input id="intPhone" type="tel" class="form-control" placeholder="Phone Number" aria-label="Phone Number" required>
+                                    <label for="intPhone" class="form-label text-black ms-2">Phone Number</label>
+                                    <div class="invalid-feedback">
+                                        Please enter a Phone Number.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div id="divItemInfo" class="mb-3">
+                            <div class="row">
+                                <h4>Order Items</h4>
+                            </div>
+                            <table id="tblForm" class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Vendor</th>
+                                        <th>Manufacturer</th>
+                                        <th>Part #</th>
+                                        <th>Description</th>
+                                        <th>Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <select id="selVendor0" class="form-control form-select">
+                                                <option hidden selected value="">Select</option>
+                                                <option value="Stihl">Stihl</option>
+                                                <option value="Rotary">Rotary</option>
+                                                <option value="RBI">RBI</option>
+                                                <option value="Kawasaki">Kawasaki</option>
+                                                <option value="PED (Exmark)">PED (Exmark)</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <input id="txtManufacturer0" class="form-control" type="text" required>
+                                        </td>
+                                        <td>
+                                            <input id="txtPartNumber0" class="form-control" type="text" required> 
+                                        </td>
+                                        <td>
+                                            <input id="txtDescription0" class="form-control" type="text" required>
+                                        </td>
+                                        <td>
+                                            <input id="intPrice0" class="form-control" type="number" required>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <button id="btnAddLine" class="btn btn-secondary" type="button">Add Line</button>
+                            <button id="btnRemoveLine" class="btn btn-danger" type="button">Remove Line</button>
+                        </div>
+
+
+
+                        <div id="divEmployeeInfo">
+                            <div class="row">
+                                <h4>Employee Info</h4>
+                            </div>
+                            <div class="row">
+                                <div class="form-floating mb-3 col">
+                                    <input id="txtEagleUser" type="text" class="form-control" placeholder="Eagle Username" aria-label="Eagle Username" required>
+                                    <label for="txtEagleUser" class="form-label text-black ms-2">Eagle Username</label>
+                                    <div class="invalid-feedback">
+                                        Please enter an Eagle Username.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <button id="btnSubmitOrder" class="btn btn-primary" type="button">Submit Order</button>
+                        <button id="btnClearForm" class="btn btn-secondary" type="button">Clear Form</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="divGenericTable" class="container mt-4" style="display: none;">
+
+        </div>
+
+
+
+
+
+
+
+
     </div>
 
     
 
 
     <script src="./js/bootstrap/bootstrap.min.js"></script>
+    <script src="./js/jquery/jquery-3.7.1.js"></script>
+    <script>
+        var intNumLines = 0;
+
+        $('#btnAddLine').on('click', function() {
+            intNumLines++;
+            let strRow = `
+            <tr>
+                <td>
+                    <select id="selVendor${intNumLines}" class="form-control form-select">
+                        <option hidden selected value="">Select</option>
+                        <option value="Stihl">Stihl</option>
+                        <option value="Rotary">Rotary</option>
+                        <option value="RBI">RBI</option>
+                        <option value="Kawasaki">Kawasaki</option>
+                        <option value="PED (Exmark)">PED (Exmark)</option>
+                    </select>
+                </td>
+                <td>
+                    <input id="txtManufacturer${intNumLines}" class="form-control" type="text" required>
+                </td>
+                <td>
+                    <input id="txtPartNumber${intNumLines}" class="form-control" type="text" required> 
+                </td>
+                <td>
+                    <input id="txtDescription${intNumLines}" class="form-control" type="text" required>
+                </td>
+                <td>
+                    <input id="intPrice${intNumLines}" class="form-control" type="number" required>
+                </td>
+            </tr>
+            `;
+
+            $('#tblForm tbody').append(strRow);
+        })
+
+        $('#btnRemoveLine').on('click', function() {
+            if(intNumLines != 0) {
+                intNumLines--;
+                $('#tblForm tbody tr').last().remove();
+            }
+        })
+
+        $('#btnSubmitOrder').on('click', function() {
+
+        })
+
+        $('#btnClearForm').on('click', function() {
+            $('#txtFirstName').val('');
+            $('#txtLastName').val('');
+            $('#intPhone').val('');
+            $('#txtEagleUser').val('');
+            $('#tblForm tbody').find('tr:gt(0)').remove();
+            intNumLines = 0;
+            
+            $('#txtManufacturer0').val('');
+            $('#txtPartNumber0').val('');
+            $('#txtDescription0').val('');
+            $('#intPrice0').val('');
+
+            
+
+        })
+    </script>
 </body>
 </html>
